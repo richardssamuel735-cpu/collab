@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cricket Team Dashboard</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background: #f4f6f8;
+      color: #333;
+    }
+    header {
+      background: #00796b;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    .container {
+      padding: 1rem;
+    }
+    .team-info {
+      background: #e0f2f1;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+    .players {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .player-card {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      padding: 1rem;
+      width: calc(33% - 1rem);
+    }
+    .player-card h3 {
+      margin: 0.5rem 0;
+    }
+    .stats {
+      margin-top: 2rem;
+    }
+    .stats table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .stats th, .stats td {
+      padding: 0.75rem;
+      border-bottom: 1px solid #ddd;
+      text-align: left;
+    }
+    .stats th {
+      background: #004d40;
+      color: white;
+    }
+    @media (max-width: 768px) {
+      .player-card {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Cricket Team Dashboard</h1>
+  </header>
+  <div class="container">
+    <div class="team-info">
+      <h2>Team: Vizianagaram Warriors</h2>
+      <p>Coach: Ravi Kumar</p>
+      <p>Captain: Arjun Reddy</p>
+    </div>
+
+    <h2>Players</h2>
+    <div class="players" id="playerList"></div>
+
+    <div class="stats">
+      <h2>Recent Match Stats</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Match</th>
+            <th>Opponent</th>
+            <th>Result</th>
+            <th>Top Scorer</th>
+          </tr>
+        </thead>
+        <tbody id="matchStats"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    const players = [
+      { name: "Arjun Reddy", role: "Batsman", age: 28 },
+      { name: "Sandeep Naik", role: "Bowler", age: 25 },
+      { name: "Rahul Verma", role: "All-Rounder", age: 27 },
+      { name: "Kiran Das", role: "Wicket Keeper", age: 24 },
+      { name: "Manoj Yadav", role: "Bowler", age: 26 },
+      { name: "Vikram Singh", role: "Batsman", age: 29 }
+    ];
+
+    const matches = [
+      { match: "Match 1", opponent: "Hyderabad Hawks", result: "Won", topScorer: "Arjun Reddy" },
+      { match: "Match 2", opponent: "Chennai Chargers", result: "Lost", topScorer: "Rahul Verma" },
+      { match: "Match 3", opponent: "Bangalore Blasters", result: "Won", topScorer: "Vikram Singh" }
+    ];
+
+    const playerList = document.getElementById("playerList");
+    players.forEach(player => {
+      const card = document.createElement("div");
+      card.className = "player-card";
+      card.innerHTML = `
+        <h3>${player.name}</h3>
+        <p>Role: ${player.role}</p>
+        <p>Age: ${player.age}</p>
+      `;
+      playerList.appendChild(card);
+    });
+
+    const matchStats = document.getElementById("matchStats");
+    matches.forEach(match => {
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${match.match}</td>
+        <td>${match.opponent}</td>
+        <td>${match.result}</td>
+        <td>${match.topScorer}</td>
+      `;
+      matchStats.appendChild(row);
+    });
+  </script>
+</body>
+</html>
