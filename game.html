@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Game Design Dashboard</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background: #1e1e2f;
+      color: #f0f0f0;
+    }
+    header {
+      background: #3f51b5;
+      padding: 1rem;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+    .container {
+      padding: 1rem;
+    }
+    .section {
+      margin-bottom: 2rem;
+    }
+    .card {
+      background: #2e2e3e;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+    .card h3 {
+      margin-top: 0;
+      color: #ffca28;
+    }
+    .grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .grid .card {
+      flex: 1 1 calc(33% - 1rem);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #2e2e3e;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    th, td {
+      padding: 0.75rem;
+      border-bottom: 1px solid #444;
+      text-align: left;
+    }
+    th {
+      background: #3f51b5;
+      color: white;
+    }
+    @media (max-width: 768px) {
+      .grid .card {
+        flex: 1 1 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Game Design Dashboard</h1>
+  </header>
+  <div class="container">
+    <div class="section">
+      <div class="card">
+        <h3>Game Overview</h3>
+        <p><strong>Title:</strong> Shadow Realms</p>
+        <p><strong>Genre:</strong> Action RPG</p>
+        <p><strong>Platform:</strong> PC, Console</p>
+        <p><strong>Engine:</strong> Unity</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Characters</h2>
+      <div class="grid" id="characterList"></div>
+    </div>
+
+    <div class="section">
+      <h2>Level Design</h2>
+      <div class="grid" id="levelList"></div>
+    </div>
+
+    <div class="section">
+      <h2>Game Stats</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Metric</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody id="statsTable"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    const characters = [
+      { name: "Kael", role: "Warrior", ability: "Blade Storm" },
+      { name: "Lyra", role: "Mage", ability: "Arcane Pulse" },
+      { name: "Thorne", role: "Assassin", ability: "Shadow Step" }
+    ];
+
+    const levels = [
+      { name: "Forgotten Forest", type: "Exploration", difficulty: "Medium" },
+      { name: "Crimson Citadel", type: "Combat", difficulty: "Hard" },
+      { name: "Echo Caverns", type: "Puzzle", difficulty: "Easy" }
+    ];
+
+    const stats = [
+      { metric: "Total Players", value: "1.2M" },
+      { metric: "Average Playtime", value: "3.5 hrs/day" },
+      { metric: "Bug Reports", value: "342" },
+      { metric: "Levels Completed", value: "87%" }
+    ];
+
+    const characterList = document.getElementById("characterList");
+    characters.forEach(char => {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `
+        <h3>${char.name}</h3>
+        <p><strong>Role:</strong> ${char.role}</p>
+        <p><strong>Ability:</strong> ${char.ability}</p>
+      `;
+      characterList.appendChild(card);
+    });
+
+    const levelList = document.getElementById("levelList");
+    levels.forEach(level => {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `
+        <h3>${level.name}</h3>
+        <p><strong>Type:</strong> ${level.type}</p>
+        <p><strong>Difficulty:</strong> ${level.difficulty}</p>
+      `;
+      levelList.appendChild(card);
+    });
+
+    const statsTable = document.getElementById("statsTable");
+    stats.forEach(stat => {
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${stat.metric}</td>
+        <td>${stat.value}</td>
+      `;
+      statsTable.appendChild(row);
+    });
+  </script>
+</body>
+</html>
+
